@@ -1,50 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 18:04:25 by nclassea          #+#    #+#             */
-/*   Updated: 2023/12/19 15:35:38 by nclassea         ###   ########.fr       */
+/*   Created: 2023/12/19 15:32:50 by nclassea          #+#    #+#             */
+/*   Updated: 2023/12/19 15:35:04 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
-
-
-
-
-int main (int ac, char **av)
+void	show_errors(char *err)
 {
-	t_game game;
-
-	if (ac == 1)
-		show_errors(ARG_ERROR1)
-	if (ac > 2)
-		show_errors(ARG_ERROR2)
-	// check args
-	// initialiser la game 
-	init_game(&game, av);
-	// start la game  
+	ft_putstr_fd("ERROR -", 2);
+	ft_putstr_fd(err, 2);
+	// exit() add something to exit program 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// errors managment =>
-// display_error // freemap // 
-
-
-// dossier parse => checkmap // fill_map //
