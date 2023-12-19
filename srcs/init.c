@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_checker.c                                      :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 17:45:09 by nclassea          #+#    #+#             */
-/*   Updated: 2023/12/19 13:46:14 by nclassea         ###   ########.fr       */
+/*   Created: 2023/12/19 14:53:14 by nclassea          #+#    #+#             */
+/*   Updated: 2023/12/19 14:55:28 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	init_map(t_data *data)
+// initialize the t_game struct witout malloc and save av in it
+void	init_game(t_game game, char **av)
 {
-	
+	ft_memset(game, 0, sizeof(t_game));
+	game->av = av;
 }

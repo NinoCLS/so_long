@@ -6,15 +6,39 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 18:04:25 by nclassea          #+#    #+#             */
-/*   Updated: 2023/12/12 18:34:25 by nclassea         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:53:05 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-main (int argc, char **argv)
+#include "../includes/so_long.h"
+
+
+int main (int ac, char **av)
 {
-	// check nb of arguments
+	t_game game;
 
-	// check .ber 
-
-
+	// check args
+	// initialiser la game 
+	init_game(&game, av);
+	// start la game  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// errors managment =>
+// display_error // freemap // 
+
+
+// dossier parse => checkmap // fill_map //

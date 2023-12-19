@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_checker.c                                      :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 17:45:09 by nclassea          #+#    #+#             */
-/*   Updated: 2023/12/19 13:46:14 by nclassea         ###   ########.fr       */
+/*   Created: 2023/11/23 15:58:08 by nclassea          #+#    #+#             */
+/*   Updated: 2023/12/14 14:47:56 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void	init_map(t_data *data)
-{
-	
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+# include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h>
+
+char	*ft_strchr(const char *s, int c);
+char	*ft_strjoin(char const *s1, char const *s2);
+size_t	ft_strlen(const char *s);
+char	*ft_strdup(const char *s);
+char	*get_next_line(int fd);
+
+#endif

@@ -3,38 +3,45 @@ CC = cc
 FLAG = -Wall -Wextra -Werror
 LIBFT_PATH = ./libft/
 LIBFT = libft.a
+GNL_PATH = ./gnl/
 MLX_FILE = libmlx.a
-MLX_PATH = ./minilbx-linux/
-MLX_FLAG = -Lmlx -lmlx -L/usr/lib/x11 -lXext -lX11
-LIBFT_LIB= $(addprefix $(LIBFT_PATH), $(LIBFT_FILE))
-MIX_LIB = $(addprefix $(MLX_PATH), $(MLX_FILE))
+MLX_PATH = ./minilibx-linux/
+MLX_FLAG = -Lmlx -lmlx -lXext -lX11
+LIBFT_LIB = $(addprefix $(LIBFT_PATH), $(LIBFT))
+MLX_LIB = $(addprefix $(MLX_PATH), $(MLX_FILE))
 MLX_EX = $(MLX_LIB) $(MLX_FLAG)
-C_FILES = map.c \
-		map_checker.c
+C_FILES = so_long.c map_checker.c
+GNL_FILES = gnl_get_next_line.c gnl_get_next_line_utils.c
 SRCS_DIR = ./srcs/
+GNL_DIR = ./gnl/
 INC_DIR = ./include/
-SRC = $(addprefix $(SRC_DIR), $(C_FILES))
-OBJ = $(SRC:.c=.o)
+SRC = $(addprefix $(SRCS_DIR), $(C_FILES))
+GNL_SRC = $(addprefix $(GNL_DIR), $(GNL_FILES))
+OBJ = $(patsubst %.c,%.o,$(SRC) $(GNL_SRC))
 
 all: $(NAME)
 
-.c.o:
-	$(CC) $(FLAG) -c $< -o $@
-              
-lib: 
+$(NAME): lib mlx $(OBJ)
+	$(CC) $(FLAG) $(OBJ) $(LIBFT_LIB) $(MLX_EX) -o $(NAME)
+
+%.o: %.c
+	$(CC) $(FLAG) -I$(INC_DIR) -c $< -o $@
+
+lib:
 	@make -C $(LIBFT_PATH)
 
 mlx:
-	@(CC) $(OBJ) $(LIBFT_LIB) $(MLX_EX) -o $(NAME)
+	@make -C $(MLX_PATH)
 
 clean:
-	@make clean -sC $(MLX_PATH)
 	@make clean -sC $(LIBFT_PATH)
+	@make clean -sC $(MLX_PATH)
 	@rm -rf $(OBJ)
 
-fclean:
+fclean: clean
 	@rm -rf $(NAME)
-	@make flclean -C $(LIBFT_PATH)
+	@make fclean -C $(LIBFT_PATH)
+	@make fclean -C $(MLX_PATH)
 
 re: fclean all
 
