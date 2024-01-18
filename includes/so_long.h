@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:43:42 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/17 17:19:58 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/01/18 15:35:19 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SO_LONG_H
 
 # include "../libft/libft.h"
+# include "../gnl/get_next_line.h"
 # include <fcntl.h>
 
 // add MSG ERROR 
@@ -23,6 +24,7 @@
 # define READ_ERROR "The argument must be a file."
 # define OPEN_ERROR "The file can't be open"
 # define EMPTY_ERROR "empty" // a redefinir 
+# define MALLOC_ERRORS "Malloc allocation failed"
 
 
 // struct image 
