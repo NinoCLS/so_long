@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:53:14 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/17 14:19:32 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:43:49 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	init_game_data(t_game *game)
 {
 	game->lines = 0;
 	game->columns = 0;
-	game->player_num = 0;
-	game->collect_num = 0;
-	game->exit_num = 0;
+	game->player_count = 0;
+	game->collectible_count= 0;
+	game->exit_count = 0;
 	game->moves = 0;
 }
 
@@ -33,3 +33,12 @@ void	init_game_data(t_game *game)
 
 
 // init map 
+
+
+
+
+
+void	init(int *var, int value)
+{
+	*var = value;
+}
