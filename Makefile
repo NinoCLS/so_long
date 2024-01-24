@@ -3,16 +3,14 @@ CC = cc
 FLAG = -Wall -Wextra -Werror
 LIBFT_PATH = ./libft/
 LIBFT = libft.a
-# FT_PRINTF_PATH = ./ft_printf/
-# FT_PRINTF = libftprintf.a
-MLX_FILE = libmlx.a
-MLX_PATH = ./minilibx-linux/
+MLX_FILE = minilibx-linux/libmlx.a
+# MLX_PATH = ./minilibx-linux/
 MLX_FLAG = -Lmlx -lXext -lX11
 LIBFT_LIB = $(addprefix $(LIBFT_PATH), $(LIBFT))
-FT_PRINTF_LIB = $(addprefix $(FT_PRINTF_PATH), $(FT_PRINTF))
-MLX_LIB = $(addprefix $(MLX_PATH), $(MLX_FILE))
-MLX_EX = $(MLX_LIB) $(MLX_FLAG)
-C_FILES = so_long.c map_checker.c init.c errors.c read_and_malloc_map.c check_path.c
+# MLX_LIB = $(addprefix $(MLX_PATH), $(MLX_FILE))
+# MLX_EX = $(MLX_LIB) $(MLX_FLAG)
+C_FILES = so_long.c ./map/map_checker.c ./map/init.c errors.c ./map/read_and_malloc_map.c \
+			./map/check_path.c ./displaying/display_image.c
 GNL_FILES = get_next_line.c get_next_line_utils.c
 SRCS_DIR = ./srcs/
 GNL_DIR = ./gnl/
@@ -23,8 +21,8 @@ OBJ = $(patsubst %.c,%.o,$(SRC) $(GNL_SRC))
 
 all: $(NAME)
 
-$(NAME): lib mlx $(OBJ)
-	$(CC) $(FLAG) $(OBJ) $(LIBFT_LIB) $(FT_PRINTF_LIB) $(MLX_EX) -o $(NAME)
+$(NAME): lib $(OBJ)
+	$(CC) $(FLAG) $(OBJ) $(LIBFT_LIB) $(FT_PRINTF_LIB) $(MLX_FILE) $(MLX_FLAG) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(FLAG) -I$(INC_DIR) -c $< -o $@
@@ -32,21 +30,15 @@ $(NAME): lib mlx $(OBJ)
 lib:
 	@make -C $(LIBFT_PATH)
 
-# printf:
-# 	@make -C $(FT_PRINTF_PATH)
-
-mlx:
-	@make -C $(MLX_PATH)
+# mlx: @make -C $(MLX_PATH) @make clean -sC $(MLX_PATH) @make fclean -C $(MLX_PATH) || true
 
 clean:
 	@make clean -sC $(LIBFT_PATH)
-	@make clean -sC $(MLX_PATH)
 	@rm -rf $(OBJ)
 
 fclean: clean
 	@rm -rf $(NAME)
 	@make fclean -C $(LIBFT_PATH) || true
-	@make fclean -C $(MLX_PATH) || true
 
 re: fclean all
 

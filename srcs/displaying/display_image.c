@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   display_image.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 16:10:09 by nclassea          #+#    #+#             */
-/*   Updated: 2023/11/14 10:43:07 by nclassea         ###   ########.fr       */
+/*   Created: 2024/01/24 16:46:21 by nclassea          #+#    #+#             */
+/*   Updated: 2024/01/24 17:32:00 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/so_long.h"
 
-t_list	*ft_lstnew(void *content)
+void	put_image_to_window(t_game *game, void **image, int x, int y)
 {
-	t_list	*new_elem;
-
-	new_elem = malloc(sizeof(t_list));
-	if (!new_elem)
-		return (NULL);
-	new_elem->content = content;
-	new_elem->next = NULL;
-	return (new_elem);
+	mlx_put_image_to_window(game->mlx, game->window, image, (y * SIZE), (x * SIZE));
 }

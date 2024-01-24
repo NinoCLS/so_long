@@ -1,33 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_printf_helpers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 13:18:59 by nclassea          #+#    #+#             */
-/*   Updated: 2023/11/10 11:51:01 by nclassea         ###   ########.fr       */
+/*   Created: 2023/11/21 11:26:35 by nclassea          #+#    #+#             */
+/*   Updated: 2024/01/24 14:00:51 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+int	ft_printchar(char c)
 {
-	size_t			i;
-	unsigned char	*str1;
-	unsigned char	*str2;
+	write(1, &c, 1);
+	return (1);
+}
 
-	if (n == 0)
-		return (0);
-	i = 0;
-	str1 = (unsigned char *)s1;
-	str2 = (unsigned char *)s2;
-	while (i < n)
+int	ft_printstr(char *str)
+{
+	int	len;
+
+	if (!str)
 	{
-		if (str1[i] != str2[i])
-			return (str1[i] - str2[i]);
-		i++;
+		write(1, "(null)", 6);
+		return (6);
 	}
-	return (0);
+	len = ft_strlen(str);
+	ft_putstr_fd(str, 1);
+	return (len);
+}
+
+int	ft_printnbr(int n)
+{
+	int		len;
+	char	*number;
+
+	len = 0;
+	number = ft_itoa(n);
+	len = ft_printstr(number);
+	free(number);
+	return (len);
 }

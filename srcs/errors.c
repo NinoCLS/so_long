@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:32:50 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/22 16:35:51 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/01/23 13:54:45 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	show_errors(char *err)
 {
-	ft_putstr_fd("- ERROR - \n", 2);
+	ft_putstr_fd("ERROR\n", 2);
 	ft_putstr_fd(err, 2);
 	exit(1); // add something in exit 
 }

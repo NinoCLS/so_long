@@ -6,11 +6,11 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:53:14 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/22 14:43:49 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:29:13 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/so_long.h"
 
 // initialize the t_game struct witout malloc
 void	init_game(t_game *game, char **av)
@@ -29,16 +29,24 @@ void	init_game_data(t_game *game)
 	game->moves = 0;
 }
 
-// init sprites 
-
-
-// init map 
-
-
-
-
-
-void	init(int *var, int value)
+// init windows
+void	init_window(t_game *game)
 {
-	*var = value;
+	game->mlx = mlx_init();
+	game->window = mlx_new_window(game->mlx, (SIZE * game->columns),
+		(SIZE * game->lines), WINDOW_NAME);
+	// check if open worked 
 }
+
+// void	**convert_xpm_to_img(t_game *game)
+// {
+	
+// }
+
+// init sprites 
+// void	init_sprite(t_game *game)
+// {
+// 	game->sprite.wall = // mlx_xpm_to_img
+// }
+
+// init map and put image

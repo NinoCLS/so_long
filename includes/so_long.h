@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:43:42 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/22 15:59:10 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:32:41 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include "../gnl/get_next_line.h"
+# include "../minilibx-linux/mlx.h"
 # include <fcntl.h>
 
 // add MSG ERROR 
@@ -31,12 +32,31 @@
 # define PLAYER_ERROR "Map error: Missing or incorrect number of player"
 # define COLLECTIBLE_ERROR "Map error: Missing or incorrect number of collectible"
 # define EXIT_ERROR "Map error: Missing or incorrect number of exit"
+# define COLLECTIBLE_PATH_ERROR "Map error : Collectible can't be reached"
+# define EXIT_PATH_ERROR "Map error : exit can't be reached"
+
+// window
+# define WINDOW_NAME "Game"
 
 
-// struct image 
+// state
+# define SIZE 32
 
-
-
+// struct image
+typedef struct s_sprite
+{
+	void	**wall;
+	void	**ground;
+	void	**door;
+	void	**character;
+	void	**collectible;
+	void	**up;
+	void	**down;
+	void	**right;
+	void	**left;
+	void	**arrow;
+	void	**base;
+}	t_sprite;
 
 
 // struct game
@@ -44,7 +64,7 @@
 typedef struct s_game
 {
 	char	**map;
-	char 	**av;
+	char	**av;
 	void	*window;
 	void	*mlx;
 	int		lines;
@@ -54,10 +74,11 @@ typedef struct s_game
 	int		exit_count;
 	int		moves;
 	int		temp_collectible;
-	int		fd;
 	int		arrow_position;
+	int		fd;
 	int		x;
 	int		y;
+	t_sprite sprite;
 }	t_game;
 
 #endif
@@ -66,12 +87,12 @@ typedef struct s_game
 void	show_errors(char *err);
 void	free_map(char **map, t_game *game);
 void	free_and_show_errors(char *err, t_game *game);
-void	free_close_and_show_errors(char *err, t_game *game, int option);
-
 
 /*init game*/
 void	init_game(t_game *game, char **av);
 void	init_game_data(t_game *game);
+void	init_window(t_game *game);
+void	init_sprites(t_game *game);
 
 /*read map*/
 void	read_map(char *av, t_game *game);
@@ -79,3 +100,6 @@ void	read_map(char *av, t_game *game);
 /*check map*/
 void	check_map(char *av, t_game *game);
 void	check_path(t_game *game);
+
+// mlx
+void	put_image_to_window(t_game *game, void **image, int x, int y);

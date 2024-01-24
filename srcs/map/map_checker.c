@@ -6,18 +6,18 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:45:09 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/22 16:36:31 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/01/24 16:59:53 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/so_long.h"
 
 // doest the map file exist / is there someting in the map file 
 void	check_extension(char *av)
 {
 	int	i;
 	int fd;
-	void *buf;
+	// void *buf;
 	
 	// check the last 4 char
 	i = (ft_strlen(av) - 4);
@@ -27,11 +27,6 @@ void	check_extension(char *av)
 	if (fd < 0)
 	{
 		show_errors(OPEN_ERROR);
-	}
-	if (read(fd, &buf, 1) == -1)
-	{
-		close(fd);
-		show_errors(READ_ERROR);
 	}
 	close(fd);
 }
@@ -60,7 +55,7 @@ static void	check_rectangle(t_game *game)
 	}
 }
 
-// // is the map enclosed in walls / check the first and last lines columns
+// // is the map enclosed in walls
 static void	check_walls(t_game *game)
 {
 	int	i;
@@ -83,7 +78,7 @@ static void	check_walls(t_game *game)
 	}
 }
 
-// // check exit / characters, position, collectible ... 
+//check exit, char position, collectible ... 
 static void	check_elements(t_game *game)
 {
 	int	x;
@@ -132,5 +127,5 @@ void	check_map(char *av, t_game *game)
 	if (game->exit_count != 1)
 		free_and_show_errors(EXIT_ERROR, game);
 	// check path
-	// check_path(game);
+	check_path(game);
 }

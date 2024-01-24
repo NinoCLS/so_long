@@ -6,11 +6,11 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:09:47 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/22 15:09:40 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/01/24 16:59:54 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/so_long.h"
 
 static void	malloc_lines(char *av, t_game *game)
 {
@@ -18,7 +18,7 @@ static void	malloc_lines(char *av, t_game *game)
 	if (game->fd < 0)
 	{
 		free_and_show_errors(OPEN_ERROR, game);
-		close(game->fd);
+		return;
 	}
 	while(get_next_line(game->fd))
 		game->lines++;
@@ -27,11 +27,11 @@ static void	malloc_lines(char *av, t_game *game)
 		free_and_show_errors(EMPTY_ERROR, game);
 		close(game->fd);
 	}
-	if (game->lines >= 78) // definir le heigh
-	{
-		free_and_show_errors("Map is invalid - Heigh is too big for your screen", game);
-		close(game->fd);
-	}
+	// if (game->lines >= 78) // definir le heigh
+	// {
+	// 	free_and_show_errors("Map is invalid - Heigh is too big for your screen", game);
+	// 	close(game->fd);
+	// }
 	game->map = (char **)malloc(sizeof(char **) * game->lines);
 	if (!game->map)
 		free_and_show_errors(MALLOC_ERRORS, game);
@@ -47,7 +47,7 @@ static void	malloc_columns(char *av, t_game *game)
 	if (game->fd < 0)
 	{
 		free_and_show_errors(OPEN_ERROR, game);
-		close(game->fd);
+		return;
 	}
 	game->columns = ft_strlen(get_next_line(game->fd)) - 1;
 	// definir le Max 

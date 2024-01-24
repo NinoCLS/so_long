@@ -6,17 +6,25 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 18:04:25 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/17 16:07:03 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:25:55 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-// function start game 
+// function start game
 void	start_game(t_game *game)
 {
 	init_game_data(game);
 	check_map(game->av[1], game);
+	// init window
+	init_window(game);
+	// init sprites
+	// init_sprites(game);
+	// init map
+	// init_map(game);
+	// loop
+	// mlx_loop(game->mlx);
 }
 
 int main (int ac, char **av)

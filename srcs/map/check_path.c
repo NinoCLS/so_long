@@ -6,18 +6,18 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:50:30 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/22 17:43:00 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/01/24 16:59:50 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/so_long.h"
 
 static char	**duplicate_game_map(t_game *game)
 {
 	char	**map_copy;
 	int	i;
 
-	map_copy = ft_calloc(game->lines, 1);
+	map_copy = ft_calloc(game->lines, sizeof(char *));
 	if (!map_copy)
 		return NULL;
 	
@@ -38,37 +38,39 @@ static char	**duplicate_game_map(t_game *game)
 	return map_copy;
 }
 
-void	flood_fill(char **map, int x, int y, t_game *game)
+void	valid_path(char **map, int x, int y, t_game *game)
 {
-	if (map[y][x] == 'C')
-		game->temp_collectible--;
-	else if (map[y][x] == 'E')
-		game->exit_count--;
-	map[y][x] = 'X';
+	if (x < 0 || x >= game->lines || y < 0 || y >= game->columns)
+		{
+			__builtin_printf("ici\n");
+			return;
+		}
+	while (map[x][y] != '1' && map[x][y] != 'V')
+	{
+		if (map[x][y] == 'C')
+			game->temp_collectible--;
+		else if (map[x][y] == 'E')
+			game->exit_count--;
+		map[x][y] = 'V';
+		valid_path(map, x + 1, y, game);
+		valid_path(map, x - 1, y, game);
+		valid_path(map, x, y + 1, game);
+		valid_path(map, x, y - 1, game);
+	}
 }
-
 
 void	check_path(t_game *game)
 {
 	char **map_copy;
+	int	i;
 
+	i = 0;
 	game->temp_collectible = game->collectible_count;
 	map_copy = duplicate_game_map(game);
-	flood_fill(map_copy, game->x, game->y, game);
+	valid_path(map_copy, game->x, game->y, game);
+	free_map(map_copy, game);
+	if (game->temp_collectible != 0)
+		free_and_show_errors(COLLECTIBLE_PATH_ERROR, game);
+	if (game->exit_count != 0)
+		free_and_show_errors(EXIT_PATH_ERROR, game);
 }
-
-
-/// test map_copy 
-
-// if (map_copy) 
-// 	{
-// 		__builtin_printf("ici");
-// 		for (int i = 0; i < game->lines; i++)
-// 			__builtin_printf("Original: %s\nCopied: %s\n\n", game->map[i], map_copy[i]);
-// 	}
-
-// 	// Libérer la mémoire allouée pour la carte copiée
-// 	for (int i = 0; i < game->lines; i++) {
-// 		free(map_copy[i]);
-// 	}
-// 	free(map_copy);
