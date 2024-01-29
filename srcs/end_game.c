@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   end_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 14:53:14 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/29 10:06:07 by nclassea         ###   ########.fr       */
+/*   Created: 2024/01/29 17:40:19 by nclassea          #+#    #+#             */
+/*   Updated: 2024/01/29 17:44:16 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-// initialize the t_game struct witout malloc
-void	init_game(t_game *game, char **av)
+
+void	end_game(char *msg, t_game *game, int num)
 {
-	ft_memset(game, 0, sizeof(t_game));
-	game->av = av;
-}
-// init data 
-void	init_game_data(t_game *game)
-{
-	game->lines = 0;
-	game->columns = 0;
-	game->player_count = 0;
-	game->collectible_count= 0;
-	game->exit_count = 0;
-	game->moves = 0;
+	if (num == 1)
+	{
+		free_map(game->map, game);
+		ft_putstr("Error\n", 1);
+		ft_putstr(msg, 1);
+		exit(1);
+	}
+	else if (num == 2)
+	{
+		ft_pustr(msg, 1);
+		// destroy img
+		exit(0);
+	}
 }

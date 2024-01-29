@@ -10,7 +10,7 @@ LIBFT_LIB = $(addprefix $(LIBFT_PATH), $(LIBFT))
 # MLX_LIB = $(addprefix $(MLX_PATH), $(MLX_FILE))
 # MLX_EX = $(MLX_LIB) $(MLX_FLAG)
 C_FILES = so_long.c ./map/map_checker.c ./map/init.c errors.c ./map/read_and_malloc_map.c \
-			./map/check_path.c ./displaying/display_image.c
+			./map/check_path.c ./displaying/display_image.c ./displaying/init_image.c
 GNL_FILES = get_next_line.c get_next_line_utils.c
 SRCS_DIR = ./srcs/
 GNL_DIR = ./gnl/

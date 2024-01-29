@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:32:50 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/23 13:54:45 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/01/29 10:02:31 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,3 +43,26 @@ void	free_and_show_errors(char *err, t_game *game)
 	free_map(game->map, game);
 	show_errors(err);
 }
+
+// void	destroy_image(t_game *game)
+// {
+// 	mlx_destroy_image(game->mlx);
+// 	mlx_destroy_image(game->mlx);
+// 	mlx_destroy_image(game->mlx);
+// 	mlx_destroy_image(game->mlx);
+// 	mlx_destroy_image(game->mlx);
+// 	mlx_destroy_image(game->mlx);
+// 	mlx_destroy_image(game->mlx);
+// 	mlx_destroy_image(game->mlx);
+// 	mlx_destroy_image(game->mlx);
+// 	mlx_destroy_image(game->mlx);
+// 	mlx_destroy_image(game->mlx);
+// 	mlx_destroy_window(game->mlx);
+// 	mlx_destroy_image(game->mlx);
+// 	mlx_destroy_image(game->mlx);
+// 	mlx_destroy_image(game->mlx);
+// 	mlx_destroy_display(game->mlx);
+// 	free_map(game);
+// 	free(game->mlx_pointer);
+// 	return ;
+// }

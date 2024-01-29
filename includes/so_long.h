@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:43:42 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/24 17:32:41 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:44:42 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define EXTENSION_NAME_ERROR "Invalid map file. Please provide a .ber file."
 # define READ_ERROR "The argument must be a file."
 # define OPEN_ERROR "The file can't be open"
-# define EMPTY_ERROR "empty" // a redefinir 
+# define EMPTY_ERROR "The file is empty"
 # define MALLOC_ERRORS "Malloc allocation failed"
 # define MAP_ERROR_EMPTY "Map Error : Empty or uninitialized map"
 # define MAP_ERROR_RECTANGLE "Map Error : Map is not rectangle"
@@ -38,16 +38,24 @@
 // window
 # define WINDOW_NAME "Game"
 
+// keycode
+# define ESC 65307
+# define UP 119
+# define DOWN 115
+# define RIGHT 100
+# define LEFT 97
+
 
 // state
-# define SIZE 32
+# define SIZE 50
 
 // struct image
 typedef struct s_sprite
 {
+	void	**base;
 	void	**wall;
 	void	**ground;
-	void	**door;
+	void	**exit;
 	void	**character;
 	void	**collectible;
 	void	**up;
@@ -55,7 +63,6 @@ typedef struct s_sprite
 	void	**right;
 	void	**left;
 	void	**arrow;
-	void	**base;
 }	t_sprite;
 
 
@@ -93,6 +100,7 @@ void	init_game(t_game *game, char **av);
 void	init_game_data(t_game *game);
 void	init_window(t_game *game);
 void	init_sprites(t_game *game);
+void	init_map(t_game *game);
 
 /*read map*/
 void	read_map(char *av, t_game *game);
@@ -102,4 +110,4 @@ void	check_map(char *av, t_game *game);
 void	check_path(t_game *game);
 
 // mlx
-void	put_image_to_window(t_game *game, void **image, int x, int y);
+void	put_image(t_game *game, void **image, int x, int y);
