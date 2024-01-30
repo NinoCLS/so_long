@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:50:30 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/24 16:59:50 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:17:11 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ static char	**duplicate_game_map(t_game *game)
 void	valid_path(char **map, int x, int y, t_game *game)
 {
 	if (x < 0 || x >= game->lines || y < 0 || y >= game->columns)
-		{
-			__builtin_printf("ici\n");
 			return;
-		}
 	while (map[x][y] != '1' && map[x][y] != 'V')
 	{
 		if (map[x][y] == 'C')

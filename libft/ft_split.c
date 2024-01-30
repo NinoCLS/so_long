@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:18:39 by nclassea          #+#    #+#             */
-/*   Updated: 2023/11/14 16:15:40 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:17:00 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,25 +103,3 @@ char	**ft_split(char const *s, char c)
 	fill_tab(res, s, c, words);
 	return (res);
 }
-
-// int main ()
-// {
-//    char const *s = "Bonjour, comment ça va ?";
-//    char c = ' ';
-
-//    char **res = ft_split(s, c);
-
-//    if (res)
-//    {
-//        int i = 0;
-//        while (res[i])
-//        {
-//            __builtin_printf("%s\n", res[i]);
-//            free(res[i]);
-//            i++;
-//        }
-//        free(res);
-//    }
-
-//    return (0);
-// }

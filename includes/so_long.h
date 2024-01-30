@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:43:42 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/29 17:44:42 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:44:58 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define EXIT_ERROR "Map error: Missing or incorrect number of exit"
 # define COLLECTIBLE_PATH_ERROR "Map error : Collectible can't be reached"
 # define EXIT_PATH_ERROR "Map error : exit can't be reached"
+# define ESC_MSG "ESC"
 
 // window
 # define WINDOW_NAME "Game"
@@ -52,7 +53,6 @@
 // struct image
 typedef struct s_sprite
 {
-	void	**base;
 	void	**wall;
 	void	**ground;
 	void	**exit;
@@ -94,6 +94,8 @@ typedef struct s_game
 void	show_errors(char *err);
 void	free_map(char **map, t_game *game);
 void	free_and_show_errors(char *err, t_game *game);
+void	destroy_image(t_game *game);
+void	end_game(char *msg, t_game *game, int num);
 
 /*init game*/
 void	init_game(t_game *game, char **av);
@@ -111,3 +113,7 @@ void	check_path(t_game *game);
 
 // mlx
 void	put_image(t_game *game, void **image, int x, int y);
+
+
+
+int	key_handler(int	key, t_game *game);

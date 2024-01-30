@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 18:04:25 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/29 14:43:51 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/01/30 17:11:44 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ void	start_game(t_game *game)
 	init_sprites(game);
 	// init map
 	init_map(game);
+	// mlx hook
+	mlx_key_hook(game->window, key_handler, game);
 	// loop
-	ft_printf("ici");
 	mlx_loop(game->mlx);
 }
 

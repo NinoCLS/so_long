@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:45:09 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/24 16:59:53 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:39:25 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	check_extension(char *av)
 {
 	int	i;
 	int fd;
-	// void *buf;
 	
 	// check the last 4 char
 	i = (ft_strlen(av) - 4);
@@ -110,15 +109,16 @@ static void	check_elements(t_game *game)
 // validate map 
 void	check_map(char *av, t_game *game)
 {
+	
 	// check .ber
 	check_extension(av);
 	// read and malloc map
 	read_map(av, game);
 	// check if rectangle
 	check_rectangle(game);
-	// check walls
+	// // check walls
 	check_walls(game);
-	// check elements
+	// // check elements
 	check_elements(game);
 	if (game->player_count != 1)
 		free_and_show_errors(PLAYER_ERROR, game);
