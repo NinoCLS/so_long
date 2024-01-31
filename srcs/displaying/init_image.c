@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:05:58 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/30 18:26:48 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/01/31 14:43:51 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	init_sprites(t_game *game)
 }
 
 // init map and put image
-void	init_map(t_game *game)
+void	draw_map(t_game *game)
 {
 	int	x;
 	int	y;

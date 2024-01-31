@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:43:42 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/30 18:44:58 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/01/31 15:32:00 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	init_game(t_game *game, char **av);
 void	init_game_data(t_game *game);
 void	init_window(t_game *game);
 void	init_sprites(t_game *game);
-void	init_map(t_game *game);
+void	draw_map(t_game *game);
 
 /*read map*/
 void	read_map(char *av, t_game *game);
@@ -114,6 +114,12 @@ void	check_path(t_game *game);
 // mlx
 void	put_image(t_game *game, void **image, int x, int y);
 
+// moves
+void	move_up(t_game *game);
+void move_down(t_game *game);
+void move_right(t_game *game);
+void move_left(t_game *game);
 
 
+// hook
 int	key_handler(int	key, t_game *game);

@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:46:21 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/30 19:00:29 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/01/31 13:12:16 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	put_image(t_game *game, void **image, int x, int y)
 }
 
 // recuperer les mouvements et les afficher
-void	move_player(t_game *game)
-{
-	// move up 
-	// move down
-	// move right
-	// move left 
-}
+// void	move_player(t_game *game)
+// {
+// 	// move up
+// 	// move down
+// 	// move right
+// 	// move left
+// }

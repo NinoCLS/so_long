@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:32:50 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/30 14:41:36 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/01/31 14:21:38 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,6 @@ void	free_and_show_errors(char *err, t_game *game)
 	show_errors(err);
 }
 
-void	destroy_image(t_game *game)
-{
-	mlx_destroy_image(game->mlx, game->sprite.collectible);
-	mlx_destroy_image(game->mlx, game->sprite.wall);
-	mlx_destroy_image(game->mlx, game->sprite.down);
-	mlx_destroy_image(game->mlx, game->sprite.ground);
-	mlx_destroy_image(game->mlx, game->sprite.exit);
-	mlx_destroy_window(game->mlx, game->window);
-	mlx_destroy_display(game->mlx);
-	free_map(game->map, game);
-	free(game->mlx);
-	exit(1);
-}
 
 
 
