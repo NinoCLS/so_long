@@ -6,99 +6,76 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:09:47 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/30 18:45:21 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:27:45 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-static char *ft_strjoin_read(char *s1, char const *s2)
-{
-	size_t s1_len = s1 ? ft_strlen(s1) : 0;
-	size_t s2_len = s2 ? ft_strlen(s2) : 0;
-	char *join = malloc((s1_len + s2_len + 1) * sizeof(char));
-	if (!join)
-		return (NULL);
-	if (s1)
-		ft_strlcpy(join, s1, s1_len + 1);
-	if (s2)
-		ft_strlcpy(join + s1_len, s2, s2_len + 1);
-	free(s1);
-	return (join);
-}
-
-static char *read_and_concatenate_file(const char *av, int *fd)
+static void	malloc_lines(char *av, t_game *game)
 {
 	char	*line;
-	char	*join_map = NULL;
+	int	line_len;
 
-	join_map = NULL;
-	*fd = open(av, O_RDONLY);
-	if (*fd < 0)
-		return NULL;
-	while ((line = get_next_line(*fd)) != NULL)
+	game->fd = open(av, O_RDONLY);
+	if (game->fd < 0)
 	{
-		char *temp = ft_strjoin_read(join_map, line);
-		free(line);
-		join_map = temp;
+		perror("Error opening file");
+		exit(1);
 	}
-	ft_printf("fd = %d\n", *fd);
-	return join_map;
+	game->lines = 0;
+	game->columns = 0;
+	while ((line = get_next_line(game->fd)))
+	{
+		line_len = ft_strlen(line);
+		if (line_len > game->columns)
+			game->columns = line_len;
+		game->lines++;
+		free(line);
+	}
+	game->columns -=1;
+	close(game->fd);
+	game->map = (char **)malloc(sizeof(char *) * game->lines);
+	if (!game->map)
+		free_and_show_errors(MALLOC_ERRORS, game);
 }
 
-
-static void calculate_dimensions(const char *join_map, size_t *line_count, size_t *max_line_length) 
+static void	malloc_columns(t_game *game)
 {
-	*line_count = 0;
-	*max_line_length = 0;
-	size_t line_length;
-	size_t	i;
+	int	i;
 
 	i = 0;
-	line_length = 0;
-	while (join_map && join_map[i])
+	while (i < game->lines)
 	{
-		if (join_map[i] == '\n' || join_map[i+1] == '\0')
+		game->map[i] = (char *)malloc(sizeof(char) * (game->columns + 1));
+		if (!game->map[i])
 		{
-			if (join_map[i] == '\n')
-				line_length++;
-			if (line_length > *max_line_length)
-				*max_line_length = line_length;
-			line_length = 0;
-			(*line_count)++;
-		} 
-		else
-			line_length++;
+			free_and_show_errors(MALLOC_ERRORS, game);
+		}
 		i++;
 	}
 }
 
-
-static void assign_map_to_game(t_game *game, char *join_map, size_t line_count, size_t max_line_length)
+void	read_map(char *av, t_game *game)
 {
-	if (join_map) 
-	{
-		game->map = ft_split(join_map, '\n');
-		free(join_map);
-	}
-	game->lines = line_count;
-	game->columns = max_line_length - 1;
-}
+	char	*line;
+	int	i;
 
-void read_map(char *av, t_game *game) 
-{
-	int fd;
-	size_t line_count;
-	size_t max_line_length;
-	char *join_map;
-	
-	join_map = read_and_concatenate_file(av, &fd);
-	if (!join_map) 
+	malloc_lines(av, game);
+	malloc_columns(game);
+
+	i = 0;
+	game->fd = open(av, O_RDONLY);
+	if (game->fd < 0)
 	{
-		free_and_show_errors("OPEN_ERROR", game);
-		return;
+		perror("Error opening file");
+		exit(EXIT_FAILURE);
 	}
-	calculate_dimensions(join_map, &line_count, &max_line_length);
-	assign_map_to_game(game, join_map, line_count, max_line_length);
-	close(fd);
+	while ((line = get_next_line(game->fd)) && i < game->lines)
+	{
+		ft_strlcpy(game->map[i], line, game->columns + 1);
+		free(line);
+		i++;
+	}
+	close(game->fd);
 }

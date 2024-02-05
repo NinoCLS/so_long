@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:40:19 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/02 18:38:00 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:54:41 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,12 @@ static void	destroy_image(t_game *game)
 	mlx_destroy_image(game->mlx, game->sprite.collectible);
 	mlx_destroy_image(game->mlx, game->sprite.wall);
 	mlx_destroy_image(game->mlx, game->sprite.down);
+	mlx_destroy_image(game->mlx, game->sprite.up);
+	mlx_destroy_image(game->mlx, game->sprite.right);
+	mlx_destroy_image(game->mlx, game->sprite.left);
 	mlx_destroy_image(game->mlx, game->sprite.ground);
 	mlx_destroy_image(game->mlx, game->sprite.exit);
+	mlx_destroy_image(game->mlx, game->sprite.open_exit);
 	mlx_destroy_image(game->mlx, game->sprite.monster);
 	mlx_destroy_window(game->mlx, game->window);
 	mlx_destroy_display(game->mlx);

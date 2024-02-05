@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:43:42 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/02 18:35:36 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:24:16 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@
 # define EXIT_ERROR "Map error: Missing or incorrect number of exit"
 # define COLLECTIBLE_PATH_ERROR "Map error : Collectible can't be reached"
 # define EXIT_PATH_ERROR "Map error : exit can't be reached"
-# define ESC_MSG "ESC"
-# define WIN "GG mec !"
-# define LOOSE "NT"
+# define ESC_MSG "Quitting the game. Thank you for playing!"
+# define WIN "Congratulations! You've successfully completed the level."
+# define LOOSE "Game Over. Don't give up, try again!"
 
 /*window*/
-# define WINDOW_NAME "Game"
+# define WINDOW_NAME "so_long"
 
 /*keycode*/
 # define ESC 65307
@@ -52,14 +52,21 @@
 /*state*/
 # define SIZE 60
 
+/*key*/
+# define DESTROY_NOTIF 17
+# define NO_EVENT_MASK 0
+
+
 /*struct image*/
 typedef struct s_sprite
 {
 	void		**wall;
 	void		**ground;
 	void		**exit;
+	void		**open_exit;
 	void		**character;
 	void		**collectible;
+	void		**current;
 	void		**up;
 	void		**down;
 	void		**right;
@@ -81,7 +88,6 @@ typedef struct s_game
 	int			exit_count;
 	int			moves;
 	int			temp_collectible;
-	int			arrow_position;
 	int			fd;
 	int			x;
 	int			y;
@@ -93,6 +99,7 @@ void			show_errors(char *err);
 void			free_map(char **map, t_game *game);
 void			free_and_show_errors(char *err, t_game *game);
 void			end_game(char *msg, t_game *game, int num);
+int				red_cross(t_game *game);
 
 /*init game*/
 void			init_game(t_game *game, char **av);
@@ -108,14 +115,12 @@ void			read_map(char *av, t_game *game);
 void			check_map(char *av, t_game *game);
 void			check_path(t_game *game);
 
-/*mlx*/
-void			put_image(t_game *game, void **image, int x, int y);
-
 /*moves*/
 void			move_up(t_game *game);
 void			move_down(t_game *game);
 void			move_right(t_game *game);
 void			move_left(t_game *game);
+void			print_map_string(t_game *game);
 
 /*hooks*/
 int				key_handler(int key, t_game *game);
