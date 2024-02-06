@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:45:09 by nclassea          #+#    #+#             */
-/*   Updated: 2024/01/30 18:39:25 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:26:20 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,10 @@ void	check_extension(char *av)
 	// check the last 4 char
 	i = (ft_strlen(av) - 4);
 	if (ft_strncmp(".ber", &av[i], 4) != 0)
-		show_errors(EXTENSION_NAME_ERROR);
+		display_errors(EXTENSION_NAME_ERROR);
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
-	{
-		show_errors(OPEN_ERROR);
-	}
+		display_errors(OPEN_ERROR);
 	close(fd);
 }
 
@@ -38,7 +36,7 @@ static void	check_rectangle(t_game *game)
 
 	if (game->lines <= 0 || game->map == NULL || game->map[0] == NULL)
 	{
-		free_and_show_errors(MAP_ERROR_EMPTY, game);
+		free_and_display_errors(MAP_ERROR_EMPTY, game);
 		return;
 	}
 	i = 1;
@@ -47,7 +45,7 @@ static void	check_rectangle(t_game *game)
 	{
 		if (ft_strlen(game->map[i]) != first_line_length)
 		{
-			free_and_show_errors(MAP_ERROR_RECTANGLE, game);
+			free_and_display_errors(MAP_ERROR_RECTANGLE, game);
 			return;
 		}
 		i++;
@@ -64,7 +62,7 @@ static void	check_walls(t_game *game)
 	while (i < game->columns)
 	{
 		if (game->map[0][i] != '1' || game->map[game->lines - 1][i] != '1')
-			free_and_show_errors(WALL_ERROR, game);
+			free_and_display_errors(WALL_ERROR, game);
 		i++;
 	}
 	i = 0;
@@ -72,7 +70,7 @@ static void	check_walls(t_game *game)
 	while (i < game->lines)
 	{
 		if (game->map[i][0] != '1' || game->map[i][game->columns - 1] != '1')
-			free_and_show_errors(WALL_ERROR, game);
+			free_and_display_errors(WALL_ERROR, game);
 		i++;
 	}
 }
@@ -121,11 +119,11 @@ void	check_map(char *av, t_game *game)
 	// // check elements
 	check_elements(game);
 	if (game->player_count != 1)
-		free_and_show_errors(PLAYER_ERROR, game);
+		free_and_display_errors(PLAYER_ERROR, game);
 	if (game->collectible_count < 1)
-		free_and_show_errors(COLLECTIBLE_ERROR, game);
+		free_and_display_errors(COLLECTIBLE_ERROR, game);
 	if (game->exit_count != 1)
-		free_and_show_errors(EXIT_ERROR, game);
+		free_and_display_errors(EXIT_ERROR, game);
 	// check path
 	check_path(game);
 }

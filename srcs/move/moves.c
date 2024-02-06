@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:36:42 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/02 18:32:35 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:16:03 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ static void	move_player(t_game *game, int next_x, int next_y)
 	else if (game->map[next_x][next_y] == 'E' && game->collectible_count == 0)
 		end_game(WIN, game, 2);
 	else if (game->map[next_x][next_y] == 'M')
-		end_game(LOOSE, game, 2);
+		end_game(LOOSE, game, 3);
 	if (game->map[next_x][next_y] != 'E' || game->collectible_count == 0)
 	{
 		game->map[game->x][game->y] = '0';
 		game->map[next_x][next_y] = 'P';
 		game->x = next_x;
 		game->y = next_y;
+		game->moves += 1;
 	}
-	game->moves += 1;
 	draw_map(game);
 }
 

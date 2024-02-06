@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 18:04:25 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/05 18:18:54 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:25:00 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	main(int ac, char **av)
 	t_game	game;
 
 	if (ac == 1)
-		show_errors(ARG_ERROR1);
+		display_errors(ARG_ERROR1);
 	if (ac > 2)
-		show_errors(ARG_ERROR2);
+		display_errors(ARG_ERROR2);
 	init_game(&game, av);
 	start_game(&game);
 }

@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:50:30 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/02 18:14:34 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:25:00 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	check_path(t_game *game)
 	valid_path(map_copy, game->x, game->y, game);
 	free_map(map_copy, game);
 	if (game->temp_collectible != 0)
-		free_and_show_errors(COLLECTIBLE_PATH_ERROR, game);
+		free_and_display_errors(COLLECTIBLE_PATH_ERROR, game);
 	if (game->exit_count != 0)
-		free_and_show_errors(EXIT_PATH_ERROR, game);
+		free_and_display_errors(EXIT_PATH_ERROR, game);
 }

@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:43:42 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/05 18:24:16 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:25:00 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include <fcntl.h>
+# include <time.h>
 
 /*MSG_ERROR*/
 # define ARG_ERROR1 "Miss one argument ! Please provide a .ber file."
@@ -51,6 +52,7 @@
 
 /*state*/
 # define SIZE 60
+# define SIZE_GAME_OVER 300
 
 /*key*/
 # define DESTROY_NOTIF 17
@@ -72,6 +74,10 @@ typedef struct s_sprite
 	void		**right;
 	void		**left;
 	void		**monster;
+	void		**game_over;
+	void		**death_1;
+	void		**death_2;
+	void		**death_3;
 }				t_sprite;
 
 /*struct game*/
@@ -95,11 +101,15 @@ typedef struct s_game
 }				t_game;
 
 /*errors*/
-void			show_errors(char *err);
+void			display_errors(char *err);
 void			free_map(char **map, t_game *game);
-void			free_and_show_errors(char *err, t_game *game);
+void			free_and_display_errors(char *err, t_game *game);
 void			end_game(char *msg, t_game *game, int num);
 int				red_cross(t_game *game);
+void			display_death(t_game *game);
+void			display_death2(t_game *game);
+void			display_death3(t_game *game);
+void			display_game_over(t_game *game);
 
 /*init game*/
 void			init_game(t_game *game, char **av);
@@ -124,5 +134,7 @@ void			print_map_string(t_game *game);
 
 /*hooks*/
 int				key_handler(int key, t_game *game);
+
+void			**xpm_to_img(t_game *game, char *path);
 
 #endif

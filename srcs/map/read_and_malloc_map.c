@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:09:47 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/05 12:27:45 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:25:00 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	malloc_lines(char *av, t_game *game)
 	close(game->fd);
 	game->map = (char **)malloc(sizeof(char *) * game->lines);
 	if (!game->map)
-		free_and_show_errors(MALLOC_ERRORS, game);
+		free_and_display_errors(MALLOC_ERRORS, game);
 }
 
 static void	malloc_columns(t_game *game)
@@ -50,7 +50,7 @@ static void	malloc_columns(t_game *game)
 		game->map[i] = (char *)malloc(sizeof(char) * (game->columns + 1));
 		if (!game->map[i])
 		{
-			free_and_show_errors(MALLOC_ERRORS, game);
+			free_and_display_errors(MALLOC_ERRORS, game);
 		}
 		i++;
 	}

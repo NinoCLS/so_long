@@ -6,13 +6,13 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:40:19 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/05 17:54:41 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:25:00 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	show_errors(char *err)
+void	display_errors(char *err)
 {
 	ft_putstr_fd("ERROR\n", 2);
 	ft_putstr_fd(err, 2);
@@ -34,10 +34,10 @@ void	free_map(char **map, t_game *game)
 	free(map);
 }
 
-void	free_and_show_errors(char *err, t_game *game)
+void	free_and_display_errors(char *err, t_game *game)
 {
 	free_map(game->map, game);
-	show_errors(err);
+	display_errors(err);
 }
 
 static void	destroy_image(t_game *game)
@@ -73,5 +73,12 @@ void	end_game(char *msg, t_game *game, int num)
 		ft_putstr_fd(msg, 1);
 		destroy_image(game);
 		exit(0);
+	}
+	else if (num == 3)
+	{
+		ft_putstr_fd("\n\n", 1);
+		ft_putstr_fd(msg, 1);
+		display_game_over(game);
+		destroy_image(game);
 	}
 }
