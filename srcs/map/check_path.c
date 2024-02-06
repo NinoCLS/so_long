@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:50:30 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/06 17:25:00 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:33:14 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 static char	**duplicate_game_map(t_game *game)
 {
 	char	**map_copy;
-	int	i;
+	int		i;
 
 	map_copy = ft_calloc(game->lines, sizeof(char *));
 	if (!map_copy)
-		return NULL;
-	
+		return (NULL);
 	i = 0;
 	while (i < game->lines)
 	{
@@ -30,18 +29,18 @@ static char	**duplicate_game_map(t_game *game)
 			while (i-- < 0)
 				free(map_copy[i]);
 			free(map_copy);
-			return NULL;
+			return (NULL);
 		}
 		ft_strlcpy(map_copy[i], game->map[i], game->columns + 1);
 		i++;
 	}
-	return map_copy;
+	return (map_copy);
 }
 
 void	valid_path(char **map, int x, int y, t_game *game)
 {
 	if (x < 0 || x >= game->lines || y < 0 || y >= game->columns)
-			return;
+		return ;
 	while (map[x][y] != '1' && map[x][y] != 'V' && map[x][y] != 'M')
 	{
 		if (map[x][y] == 'C')
@@ -58,8 +57,8 @@ void	valid_path(char **map, int x, int y, t_game *game)
 
 void	check_path(t_game *game)
 {
-	char **map_copy;
-	int	i;
+	char	**map_copy;
+	int		i;
 
 	i = 0;
 	game->temp_collectible = game->collectible_count;

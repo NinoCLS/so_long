@@ -12,12 +12,13 @@
 
 #include "../../includes/so_long.h"
 
-static void put_image(t_game *game, void **image, int x, int y)
+static void	put_image(t_game *game, void **image, int x, int y)
 {
-	mlx_put_image_to_window(game->mlx, game->window, image, (y * SIZE), (x * SIZE));
+	mlx_put_image_to_window(game->mlx, game->window, image, (y * SIZE), (x
+			* SIZE));
 }
 
-static void draw_sprite(t_game *game, char tile, int x, int y) 
+static void	draw_sprite(t_game *game, char tile, int x, int y)
 {
 	if (tile == 'P')
 		put_image(game, game->sprite.current, x, y);
@@ -58,10 +59,8 @@ void	print_map_string(t_game *game)
 	char	*string;
 
 	string = ft_itoa(game->moves);
-	mlx_string_put(game->mlx, game->window, 4,
-		(35), 0xFFFFFF, "Movements: ");
-	mlx_string_put(game->mlx, game->window, 68,
-		(35), 0xFFFFFF, string);
+	mlx_string_put(game->mlx, game->window, 4, (35), 0xFFFFFF, "Movements: ");
+	mlx_string_put(game->mlx, game->window, 68, (35), 0xFFFFFF, string);
 	free(string);
 	string = NULL;
 	return ;

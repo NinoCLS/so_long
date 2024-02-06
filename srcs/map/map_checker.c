@@ -6,19 +6,17 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:45:09 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/06 17:26:20 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:34:35 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-// doest the map file exist / is there someting in the map file 
 void	check_extension(char *av)
 {
 	int	i;
-	int fd;
-	
-	// check the last 4 char
+	int	fd;
+
 	i = (ft_strlen(av) - 4);
 	if (ft_strncmp(".ber", &av[i], 4) != 0)
 		display_errors(EXTENSION_NAME_ERROR);
@@ -28,16 +26,15 @@ void	check_extension(char *av)
 	close(fd);
 }
 
-// check if rectangle
 static void	check_rectangle(t_game *game)
 {
 	size_t	first_line_length;
-	int	i;
+	int		i;
 
 	if (game->lines <= 0 || game->map == NULL || game->map[0] == NULL)
 	{
 		free_and_display_errors(MAP_ERROR_EMPTY, game);
-		return;
+		return ;
 	}
 	i = 1;
 	first_line_length = ft_strlen(game->map[0]);
@@ -46,19 +43,17 @@ static void	check_rectangle(t_game *game)
 		if (ft_strlen(game->map[i]) != first_line_length)
 		{
 			free_and_display_errors(MAP_ERROR_RECTANGLE, game);
-			return;
+			return ;
 		}
 		i++;
 	}
 }
 
-// // is the map enclosed in walls
 static void	check_walls(t_game *game)
 {
 	int	i;
 
 	i = 0;
-	// check first and last line
 	while (i < game->columns)
 	{
 		if (game->map[0][i] != '1' || game->map[game->lines - 1][i] != '1')
@@ -66,7 +61,6 @@ static void	check_walls(t_game *game)
 		i++;
 	}
 	i = 0;
-	// check first and last column
 	while (i < game->lines)
 	{
 		if (game->map[i][0] != '1' || game->map[i][game->columns - 1] != '1')
@@ -75,7 +69,6 @@ static void	check_walls(t_game *game)
 	}
 }
 
-//check exit, char position, collectible ... 
 static void	check_elements(t_game *game)
 {
 	int	x;
@@ -103,20 +96,12 @@ static void	check_elements(t_game *game)
 	}
 }
 
-
-// validate map 
 void	check_map(char *av, t_game *game)
 {
-	
-	// check .ber
 	check_extension(av);
-	// read and malloc map
 	read_map(av, game);
-	// check if rectangle
 	check_rectangle(game);
-	// // check walls
 	check_walls(game);
-	// // check elements
 	check_elements(game);
 	if (game->player_count != 1)
 		free_and_display_errors(PLAYER_ERROR, game);
@@ -124,6 +109,5 @@ void	check_map(char *av, t_game *game)
 		free_and_display_errors(COLLECTIBLE_ERROR, game);
 	if (game->exit_count != 1)
 		free_and_display_errors(EXIT_ERROR, game);
-	// check path
 	check_path(game);
 }

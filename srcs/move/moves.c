@@ -14,9 +14,9 @@
 
 static void	move_player(t_game *game, int next_x, int next_y)
 {
-	if (next_x < 0 || next_x >= game->lines || next_y < 0 || next_y >= game->columns || game->map[next_x][next_y] == '1') 
-		return;
-
+	if (next_x < 0 || next_x >= game->lines || next_y < 0
+		|| next_y >= game->columns || game->map[next_x][next_y] == '1')
+		return ;
 	if (game->map[next_x][next_y] == 'C')
 		game->collectible_count--;
 	else if (game->map[next_x][next_y] == 'E' && game->collectible_count == 0)

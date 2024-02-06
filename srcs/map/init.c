@@ -18,13 +18,13 @@ void	init_game(t_game *game, char **av)
 	ft_memset(game, 0, sizeof(t_game));
 	game->av = av;
 }
-// init data 
+// init data
 void	init_game_data(t_game *game)
 {
 	game->lines = 0;
 	game->columns = 0;
 	game->player_count = 0;
-	game->collectible_count= 0;
+	game->collectible_count = 0;
 	game->exit_count = 0;
 	game->moves = 0;
 }

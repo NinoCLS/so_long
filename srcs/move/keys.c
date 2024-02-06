@@ -19,7 +19,7 @@ static void	print_moves(t_game *game)
 	print_map_string(game);
 }
 
-int key_handler(int key, t_game *game)
+int	key_handler(int key, t_game *game)
 {
 	if (key == ESC)
 		end_game(ESC_MSG, game, 2);

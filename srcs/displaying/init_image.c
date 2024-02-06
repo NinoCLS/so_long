@@ -16,14 +16,14 @@
 void	init_window(t_game *game)
 {
 	game->mlx = mlx_init();
-	game->window = mlx_new_window(game->mlx, (SIZE * game->columns),
-		(SIZE * game->lines), WINDOW_NAME);
+	game->window = mlx_new_window(game->mlx, (SIZE * game->columns), (SIZE
+				* game->lines), WINDOW_NAME);
 }
 
 void	**xpm_to_img(t_game *game, char *path)
 {
-	int	size;
-	int	fd;
+	int		size;
+	int		fd;
 	void	**image;
 
 	size = SIZE;
@@ -35,7 +35,7 @@ void	**xpm_to_img(t_game *game, char *path)
 	return (image);
 }
 
-// init sprites 
+// init sprites
 void	init_sprites(t_game *game)
 {
 	game->sprite.collectible = xpm_to_img(game, "./textures/item/item.xpm");
@@ -43,7 +43,8 @@ void	init_sprites(t_game *game)
 	game->sprite.down = xpm_to_img(game, "./textures/character/char_down.xpm");
 	game->sprite.current = game->sprite.down;
 	game->sprite.up = xpm_to_img(game, "./textures/character/char_up.xpm");
-	game->sprite.right = xpm_to_img(game, "./textures/character/char_right.xpm");
+	game->sprite.right = xpm_to_img(game,
+			"./textures/character/char_right.xpm");
 	game->sprite.left = xpm_to_img(game, "./textures/character/char_left.xpm");
 	game->sprite.ground = xpm_to_img(game, "./textures/ground/ground.xpm");
 	game->sprite.exit = xpm_to_img(game, "./textures/exit/exit.xpm");
@@ -56,4 +57,3 @@ int	red_cross(t_game *game)
 	end_game("", game, 2);
 	return (0);
 }
-
