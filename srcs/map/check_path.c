@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:50:30 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/06 17:33:14 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:11:29 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,13 @@ void	valid_path(char **map, int x, int y, t_game *game)
 {
 	if (x < 0 || x >= game->lines || y < 0 || y >= game->columns)
 		return ;
-	while (map[x][y] != '1' && map[x][y] != 'V' && map[x][y] != 'M')
+	if (map[x][y] == 'E')
+		game->exit_count = 1;
+	while (map[x][y] != '1' && map[x][y] != 'V' && map[x][y] != 'M'
+		&& map[x][y] != 'E')
 	{
 		if (map[x][y] == 'C')
 			game->temp_collectible--;
-		else if (map[x][y] == 'E')
-			game->exit_count--;
 		map[x][y] = 'V';
 		valid_path(map, x + 1, y, game);
 		valid_path(map, x - 1, y, game);
@@ -61,12 +62,13 @@ void	check_path(t_game *game)
 	int		i;
 
 	i = 0;
+	game->exit_count = 0;
 	game->temp_collectible = game->collectible_count;
 	map_copy = duplicate_game_map(game);
 	valid_path(map_copy, game->x, game->y, game);
 	free_map(map_copy, game);
 	if (game->temp_collectible != 0)
-		free_and_display_errors(COLLECTIBLE_PATH_ERROR, game);
-	if (game->exit_count != 0)
-		free_and_display_errors(EXIT_PATH_ERROR, game);
+		end_game(COLLECTIBLE_PATH_ERROR, game, 1);
+	if (game->exit_count != 1)
+		end_game(EXIT_PATH_ERROR, game, 1);
 }

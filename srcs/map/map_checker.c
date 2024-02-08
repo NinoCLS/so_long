@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:45:09 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/06 17:34:35 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:03:55 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	check_rectangle(t_game *game)
 
 	if (game->lines <= 0 || game->map == NULL || game->map[0] == NULL)
 	{
-		free_and_display_errors(MAP_ERROR_EMPTY, game);
+		end_game(MAP_ERROR_EMPTY, game, 1);
 		return ;
 	}
 	i = 1;
@@ -42,7 +42,7 @@ static void	check_rectangle(t_game *game)
 	{
 		if (ft_strlen(game->map[i]) != first_line_length)
 		{
-			free_and_display_errors(MAP_ERROR_RECTANGLE, game);
+			end_game(MAP_ERROR_RECTANGLE, game, 1);
 			return ;
 		}
 		i++;
@@ -57,14 +57,14 @@ static void	check_walls(t_game *game)
 	while (i < game->columns)
 	{
 		if (game->map[0][i] != '1' || game->map[game->lines - 1][i] != '1')
-			free_and_display_errors(WALL_ERROR, game);
+			end_game(WALL_ERROR, game, 1);
 		i++;
 	}
 	i = 0;
 	while (i < game->lines)
 	{
 		if (game->map[i][0] != '1' || game->map[i][game->columns - 1] != '1')
-			free_and_display_errors(WALL_ERROR, game);
+			end_game(WALL_ERROR, game, 1);
 		i++;
 	}
 }
@@ -104,10 +104,10 @@ void	check_map(char *av, t_game *game)
 	check_walls(game);
 	check_elements(game);
 	if (game->player_count != 1)
-		free_and_display_errors(PLAYER_ERROR, game);
+		end_game(PLAYER_ERROR, game, 1);
 	if (game->collectible_count < 1)
-		free_and_display_errors(COLLECTIBLE_ERROR, game);
+		end_game(COLLECTIBLE_ERROR, game, 1);
 	if (game->exit_count != 1)
-		free_and_display_errors(EXIT_ERROR, game);
+		end_game(EXIT_ERROR, game, 1);
 	check_path(game);
 }

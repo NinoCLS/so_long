@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:43:42 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/06 17:25:00 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:15:29 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@
 # define DESTROY_NOTIF 17
 # define NO_EVENT_MASK 0
 
-
 /*struct image*/
 typedef struct s_sprite
 {
@@ -97,13 +96,14 @@ typedef struct s_game
 	int			fd;
 	int			x;
 	int			y;
+	int			x_position;
+	int			y_position;
 	t_sprite	sprite;
 }				t_game;
 
 /*errors*/
 void			display_errors(char *err);
 void			free_map(char **map, t_game *game);
-void			free_and_display_errors(char *err, t_game *game);
 void			end_game(char *msg, t_game *game, int num);
 int				red_cross(t_game *game);
 void			display_death(t_game *game);
@@ -130,11 +130,12 @@ void			move_up(t_game *game);
 void			move_down(t_game *game);
 void			move_right(t_game *game);
 void			move_left(t_game *game);
-void			print_map_string(t_game *game);
+void			print_moves_on_map(t_game *game);
 
 /*hooks*/
 int				key_handler(int key, t_game *game);
 
+/*mlx*/
 void			**xpm_to_img(t_game *game, char *path);
 
 #endif

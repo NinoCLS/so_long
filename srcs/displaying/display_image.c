@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:46:21 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/05 18:23:52 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:09:13 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,13 @@ void	draw_map(t_game *game)
 	}
 }
 
-void	print_map_string(t_game *game)
+void	print_moves_on_map(t_game *game)
 {
-	char	*string;
+	char	*moves;
 
-	string = ft_itoa(game->moves);
+	moves = ft_itoa(game->moves);
 	mlx_string_put(game->mlx, game->window, 4, (35), 0xFFFFFF, "Movements: ");
-	mlx_string_put(game->mlx, game->window, 68, (35), 0xFFFFFF, string);
-	free(string);
-	string = NULL;
-	return ;
+	mlx_string_put(game->mlx, game->window, 68, (35), 0xFFFFFF, moves);
+	free(moves);
+	moves = NULL;
 }

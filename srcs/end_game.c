@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:40:19 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/06 17:52:08 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:13:58 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,6 @@ void	free_map(char **map, t_game *game)
 	free(map);
 }
 
-void	free_and_display_errors(char *err, t_game *game)
-{
-	free_map(game->map, game);
-	display_errors(err);
-}
-
 static void	destroy_image(t_game *game)
 {
 	mlx_destroy_image(game->mlx, game->sprite.collectible);
@@ -61,13 +55,12 @@ static void	destroy_image(t_game *game)
 
 void	end_game(char *msg, t_game *game, int num)
 {
-	// if (num == 1)
-	// {
-	// 	free_map(game->map, game);
-	// 	display_errors(msg);
-	// 	exit(1);
-	// }
-	if (num == 2)
+	if (num == 1)
+	{
+		free_map(game->map, game);
+		display_errors(msg);
+	}
+	else if (num == 2)
 	{
 		ft_putstr_fd("\n\n", 1);
 		ft_putstr_fd(msg, 1);
@@ -80,5 +73,10 @@ void	end_game(char *msg, t_game *game, int num)
 		ft_putstr_fd(msg, 1);
 		display_game_over(game);
 		destroy_image(game);
+	}
+	else if (num == 4)
+	{
+		display_errors(msg);
+		close(game->fd);
 	}
 }
