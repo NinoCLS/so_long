@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:37:08 by nino              #+#    #+#             */
-/*   Updated: 2024/02/19 12:35:09 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:38:38 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	*extract(char *line)
 		count++;
 	if (line[count] == '\0' || line[1] == '\0')
 		return (0);
-	backup = ft_substr(line, count + 1, ft_strlen(line) - count);
+	backup = ft_substr(line, count + 1, ft_strlength(line) - count);
 	if (*backup == '\0')
 	{
 		free(backup);

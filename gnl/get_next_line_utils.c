@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 12:14:54 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/19 12:30:13 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:39:38 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-int	ft_strlen(const char *str)
+int	ft_strlength(const char *str)
 {
 	int	i;
 
@@ -66,7 +66,7 @@ char	*ft_strdup(const char *s)
 	char	*str;
 
 	i = 0;
-	j = ft_strlen(s);
+	j = ft_strlength(s);
 	str = (char *)malloc(sizeof(*str) * (j + 1));
 	while (i < j)
 	{
@@ -85,7 +85,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	str = (char *)malloc(sizeof(char) * (ft_strlength(s1) + ft_strlength(s2)
+				+ 1));
 	if (str == NULL)
 		return (NULL);
 	while (s1[i] != '\0')

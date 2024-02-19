@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:37:05 by nino              #+#    #+#             */
-/*   Updated: 2024/02/19 12:32:05 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:38:20 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 # define BUFFER_SIZE 42
 
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-int		ft_strlen(const char *str);
 char	*ft_strchr(const char *s, int i);
 char	*ft_strdup(const char *s);
+int		ft_strlength(const char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*get_next_line(int fd);
 
