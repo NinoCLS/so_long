@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:05:58 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/12 16:57:12 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:17:00 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	**xpm_to_img(t_game *game, char *path)
 	if (fd < 0)
 		mlx_clear_window(game->mlx, game->window);
 	image = mlx_xpm_file_to_image(game->mlx, path, &size, &size);
+	if (!image)
+		end_game(XPM_ERROR, game, 2);
 	close(fd);
 	return (image);
 }
@@ -53,6 +55,6 @@ void	init_sprites(t_game *game)
 
 int	red_cross(t_game *game)
 {
-	end_game("", game, 2);
+	end_game(ESC_MSG, game, 2);
 	return (0);
 }

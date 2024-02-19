@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 10:30:55 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/19 12:03:33 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:44:05 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	check_window(t_game *game)
 	screen_size = get_screen_size(game);
 	if (((game->columns * SIZE) > screen_size.size_x) || ((game->lines
 				* SIZE) > screen_size.size_y))
-		end_game(SCREEN_ERROR, game, 1);
+		end_game(SCREEN_ERROR, game, 2);
 }
 
 char	*ft_strstr(char *haystack, char *needle)

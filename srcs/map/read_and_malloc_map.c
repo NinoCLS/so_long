@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:09:47 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/08 16:40:07 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:21:14 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,15 @@ static void	read_lines(t_game *game)
 
 	game->lines = 0;
 	game->columns = 0;
-	while (1)
+	line = get_next_line(game->fd);
+	while (line)
 	{
-		line = get_next_line(game->fd);
-		if (!line)
-			break ;
 		line_len = ft_strlen(line);
 		if (line_len > game->columns)
 			game->columns = line_len;
 		game->lines++;
 		free(line);
+		line = get_next_line(game->fd);
 	}
 	game->columns -= 1;
 	close(game->fd);

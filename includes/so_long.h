@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:43:42 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/12 13:21:33 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:17:07 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define LOOSE "Game Over. Don't give up, try again!"
 # define SCREEN_ERROR "Map size is bigger than display resolution"
 # define ENV "No env variable"
+# define XPM_ERROR "XPM file error"
 
 /*window*/
 # define WINDOW_NAME "so_long"
