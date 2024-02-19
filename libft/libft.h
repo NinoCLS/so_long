@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 14:49:19 by nino              #+#    #+#             */
-/*   Updated: 2024/01/24 14:50:45 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/19 12:04:28 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 
 // ft_printf
-int	ft_printf(const char *txt, ...);
-int	ft_printchar(char c);
-int	ft_printstr(char *str);
-int	ft_printnbr(int n);
-int	ft_printptr(unsigned long long n);
-int	ft_print_unsigned_nb(unsigned int n);
-int	ft_printhex(unsigned int n, char format);
+int					ft_printf(const char *txt, ...);
+int					ft_printchar(char c);
+int					ft_printstr(char *str);
+int					ft_printnbr(int n);
+int					ft_printptr(unsigned long long n);
+int					ft_print_unsigned_nb(unsigned int n);
+int					ft_printhex(unsigned int n, char format);
 
 #endif

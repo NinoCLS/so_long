@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:40:19 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/08 16:13:58 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/19 12:02:28 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,44 @@ void	free_map(char **map, t_game *game)
 	free(map);
 }
 
-static void	destroy_image(t_game *game)
+static void	destroy_image2(t_game *game)
 {
-	mlx_destroy_image(game->mlx, game->sprite.collectible);
-	mlx_destroy_image(game->mlx, game->sprite.wall);
-	mlx_destroy_image(game->mlx, game->sprite.down);
-	mlx_destroy_image(game->mlx, game->sprite.up);
-	mlx_destroy_image(game->mlx, game->sprite.right);
-	mlx_destroy_image(game->mlx, game->sprite.left);
-	mlx_destroy_image(game->mlx, game->sprite.ground);
-	mlx_destroy_image(game->mlx, game->sprite.exit);
-	mlx_destroy_image(game->mlx, game->sprite.open_exit);
-	mlx_destroy_image(game->mlx, game->sprite.monster);
+	if (game)
+	{
+		if (game->sprite.exit)
+			mlx_destroy_image(game->mlx, game->sprite.exit);
+		if (game->sprite.open_exit)
+			mlx_destroy_image(game->mlx, game->sprite.open_exit);
+		if (game->sprite.monster)
+			mlx_destroy_image(game->mlx, game->sprite.monster);
+	}
 	mlx_destroy_window(game->mlx, game->window);
 	mlx_destroy_display(game->mlx);
 	free_map(game->map, game);
 	free(game->mlx);
 	exit(1);
+}
+
+static void	destroy_image(t_game *game)
+{
+	if (game)
+	{
+		if (game->sprite.collectible)
+			mlx_destroy_image(game->mlx, game->sprite.collectible);
+		if (game->sprite.wall)
+			mlx_destroy_image(game->mlx, game->sprite.wall);
+		if (game->sprite.down)
+			mlx_destroy_image(game->mlx, game->sprite.down);
+		if (game->sprite.up)
+			mlx_destroy_image(game->mlx, game->sprite.up);
+		if (game->sprite.right)
+			mlx_destroy_image(game->mlx, game->sprite.right);
+		if (game->sprite.left)
+			mlx_destroy_image(game->mlx, game->sprite.left);
+		if (game->sprite.ground)
+			mlx_destroy_image(game->mlx, game->sprite.ground);
+	}
+	destroy_image2(game);
 }
 
 void	end_game(char *msg, t_game *game, int num)

@@ -6,13 +6,12 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:05:58 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/06 13:27:46 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:57:12 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-// init windows
 void	init_window(t_game *game)
 {
 	game->mlx = mlx_init();

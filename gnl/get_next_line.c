@@ -6,139 +6,74 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:37:08 by nino              #+#    #+#             */
-/*   Updated: 2024/01/30 14:45:18 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/19 12:35:09 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "get_next_line.h"
 
-char	*ft_strchr(char *s, int c)
+static char	*function_name(int fd, char *buf, char *backup)
 {
-	while (*s)
+	int		read_line;
+	char	*char_temp;
+
+	read_line = 1;
+	while (read_line != '\0')
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
+		read_line = read(fd, buf, BUFFER_SIZE);
+		if (read_line == -1)
+			return (0);
+		else if (read_line == 0)
+			break ;
+		buf[read_line] = '\0';
+		if (!backup)
+			backup = ft_strdup("");
+		char_temp = backup;
+		backup = ft_strjoin(char_temp, buf);
+		free(char_temp);
+		char_temp = NULL;
+		if (ft_strchr (buf, '\n'))
+			break ;
 	}
-	return (NULL);
+	return (backup);
 }
 
-size_t	ft_strlen(const char *s)
+static char	*extract(char *line)
 {
-	size_t	i;
+	size_t	count;
+	char	*backup;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	srcsize;
-	size_t	i;
-
-	srcsize = ft_strlen(src);
-	i = 0;
-	if (dstsize > 0)
+	count = 0;
+	while (line[count] != '\n' && line[count] != '\0')
+		count++;
+	if (line[count] == '\0' || line[1] == '\0')
+		return (0);
+	backup = ft_substr(line, count + 1, ft_strlen(line) - count);
+	if (*backup == '\0')
 	{
-		while (i < srcsize && i < dstsize - 1)
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
+		free(backup);
+		backup = NULL;
 	}
-	return (srcsize);
-}
-
-char	*ft_strdup(const char *src)
-{
-	char	*dst;
-	size_t	len;
-
-	len = ft_strlen(src) + 1;
-	dst = malloc(len);
-	if (dst == NULL)
-		return (NULL);
-	ft_strlcpy(dst, src, len);
-	return (dst);
-}
-
-char	*ft_strjoin(char *s1, char const *s2, size_t len)
-{
-	size_t	s1_len;
-	size_t	s2_len;
-	char	*join;
-
-	if (!s1 || !s2)
-		return (NULL);
-	s1_len = ft_strlen(s1);
-	s2_len = len;
-	join = (char *)malloc((s1_len + s2_len + 1) * sizeof(char));
-	if (!join)
-		return (NULL);
-	ft_strlcpy(join, s1, s1_len + 1);
-	ft_strlcpy((join + s1_len), s2, s2_len + 1);
-	free(s1);
-	return (join);
+	line[count + 1] = '\0';
+	return (backup);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	buf[BUFFER_SIZE + 1];
 	char		*line;
-	char		*newline;
-	int			countread;
-	int			to_copy;
+	char		*buf;
+	static char	*backup;
 
-	line = ft_strdup(buf);
-	while (!(ft_strchr(line, '\n')) && (countread = read(fd, buf, BUFFER_SIZE)) > 0)
-	{
-		buf[countread] = '\0';
-		line = ft_strjoin(line, buf, countread);
-	}
-	if (ft_strlen(line) == 0)
-		return (free(line), NULL);
-
-	newline = ft_strchr(line, '\n');
-	if (newline != NULL)
-	{
-		to_copy = newline - line + 1;
-		ft_strlcpy(buf, newline + 1, BUFFER_SIZE + 1);
-	}
-	else
-	{
-		to_copy = ft_strlen(line);
-		ft_strlcpy(buf, "", BUFFER_SIZE + 1);
-	}
-	line[to_copy] = '\0';
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buf)
+		return (0);
+	line = function_name(fd, buf, backup);
+	free(buf);
+	buf = NULL;
+	if (!line)
+		return (NULL);
+	backup = extract(line);
 	return (line);
 }
-// #include <stdio.h>
-// #include <fcntl.h>
-// #include <unistd.h>
-
-// int main(int argc, char **argv)
-// {
-//     int fd;
-//     char *line;
-// 	(void)argc;
-
-//     fd = open(argv[1], O_RDONLY);
-//     if (fd == -1)
-//     {
-//         perror("Error opening file");
-//         return (1);
-//     }
-
-//     while ((line = get_next_line(fd)) != NULL)
-//     {
-//         printf("%s", line);
-//         free(line);  
-//     }
-
-//     close(fd);
-//     return (0);
-// }

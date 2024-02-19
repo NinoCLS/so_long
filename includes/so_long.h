@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:43:42 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/08 16:15:29 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:21:33 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 # define ESC_MSG "Quitting the game. Thank you for playing!"
 # define WIN "Congratulations! You've successfully completed the level."
 # define LOOSE "Game Over. Don't give up, try again!"
+# define SCREEN_ERROR "Map size is bigger than display resolution"
+# define ENV "No env variable"
 
 /*window*/
 # define WINDOW_NAME "so_long"
@@ -79,6 +81,12 @@ typedef struct s_sprite
 	void		**death_3;
 }				t_sprite;
 
+typedef struct s_point
+{
+	int	size_x;
+	int	size_y;
+}	t_point;
+
 /*struct game*/
 typedef struct s_game
 {
@@ -110,6 +118,7 @@ void			display_death(t_game *game);
 void			display_death2(t_game *game);
 void			display_death3(t_game *game);
 void			display_game_over(t_game *game);
+char			*ft_strstr(char *haystack, char *needle);
 
 /*init game*/
 void			init_game(t_game *game, char **av);
@@ -124,6 +133,7 @@ void			read_map(char *av, t_game *game);
 /*check map*/
 void			check_map(char *av, t_game *game);
 void			check_path(t_game *game);
+void			check_window(t_game *game);
 
 /*moves*/
 void			move_up(t_game *game);
