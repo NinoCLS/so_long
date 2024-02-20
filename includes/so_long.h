@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:43:42 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/19 17:17:07 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/20 13:47:45 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,31 @@
 # include <time.h>
 
 /*MSG_ERROR*/
-# define ARG_ERROR1 "Miss one argument ! Please provide a .ber file."
-# define ARG_ERROR2 "Too many arguments."
-# define EXTENSION_NAME_ERROR "Invalid map file. Please provide a .ber file."
-# define READ_ERROR "The argument must be a file."
-# define OPEN_ERROR "The file can't be open"
-# define EMPTY_ERROR "The file is empty"
-# define MALLOC_ERRORS "Malloc allocation failed"
-# define MAP_ERROR_EMPTY "Map Error : Empty or uninitialized map"
-# define MAP_ERROR_RECTANGLE "Map Error : Map is not rectangle"
-# define WALL_ERROR "Map error: Map is not enclosed by walls"
-# define PLAYER_ERROR "Map error: Missing or incorrect number of player"
-# define COLLECTIBLE_ERROR "Map error: Missing or incorrect \
+# define ARG_ERROR1 "Error\n\nMiss one argument ! Please provide a .ber file."
+# define ARG_ERROR2 "Error\n\nToo many arguments."
+# define EXTENSION_NAME_ERROR "Error\n\nInvalid map file. \
+	Please provide a .ber file."
+# define READ_ERROR "Error\n\nThe argument must be a file."
+# define OPEN_ERROR "Error\n\nThe file can't be open"
+# define EMPTY_ERROR "Error\n\nThe file is empty"
+# define MALLOC_ERRORS "Error\n\nMalloc allocation failed"
+# define MAP_ERROR_EMPTY "Error\n\nMap Error : Empty or uninitialized map"
+# define MAP_ERROR_RECTANGLE "Error\n\nMap Error : Map is not rectangle"
+# define WALL_ERROR "Error\n\nMap error: Map is not enclosed by walls"
+# define PLAYER_ERROR "Error\n\nMap error: Missing or incorrect number of player"
+# define COLLECTIBLE_ERROR "Error\n\nMap error: Missing or incorrect \
 	number of collectible"
-# define EXIT_ERROR "Map error: Missing or incorrect number of exit"
-# define COLLECTIBLE_PATH_ERROR "Map error : Collectible can't be reached"
-# define EXIT_PATH_ERROR "Map error : exit can't be reached"
-# define ESC_MSG "Quitting the game. Thank you for playing!"
-# define WIN "Congratulations! You've successfully completed the level."
-# define LOOSE "Game Over. Don't give up, try again!"
-# define SCREEN_ERROR "Map size is bigger than display resolution"
-# define ENV "No env variable"
-# define XPM_ERROR "XPM file error"
+# define EXIT_ERROR "Error\n\nMap error: \
+	Missing or incorrect number of exit"
+# define COLLECTIBLE_PATH_ERROR "Error\n\nMap error : \
+	Collectible can't be reached"
+# define EXIT_PATH_ERROR "Error\n\nMap error : exit can't be reached"
+# define SCREEN_ERROR "Error\n\nMap size is bigger than display resolution"
+# define ENV "Error\n\nNo env variable"
+# define XPM_ERROR "Error\n\nXPM file error"
+# define ESC_MSG "\n\nQuitting the game. Thank you for playing!"
+# define WIN "\n\nCongratulations! You've successfully completed the level."
+# define LOOSE "\n\nGame Over. Don't give up, try again!"
 
 /*window*/
 # define WINDOW_NAME "so_long"
@@ -119,6 +122,8 @@ void			display_death(t_game *game);
 void			display_death2(t_game *game);
 void			display_death3(t_game *game);
 void			display_game_over(t_game *game);
+
+/*utils*/
 char			*ft_strstr(char *haystack, char *needle);
 
 /*init game*/

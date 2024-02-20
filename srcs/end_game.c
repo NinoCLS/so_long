@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:40:19 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/19 17:09:22 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/20 13:45:27 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	display_errors(char *err)
 {
-	ft_putstr_fd("ERROR\n\n", 2);
 	ft_putstr_fd(err, 2);
 	exit(1);
 }
@@ -83,14 +82,12 @@ void	end_game(char *msg, t_game *game, int num)
 	}
 	else if (num == 2)
 	{
-		ft_putstr_fd("ERROR\n\n", 2);
 		ft_putstr_fd(msg, 1);
 		destroy_image(game);
 		exit(1);
 	}
 	else if (num == 3)
 	{
-		ft_putstr_fd("ERROR\n\n", 2);
 		ft_putstr_fd(msg, 1);
 		display_game_over(game);
 		destroy_image(game);
