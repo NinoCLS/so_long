@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:43:42 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/20 13:47:45 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:01:32 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ typedef struct s_sprite
 	void		**monster;
 	void		**game_over;
 	void		**death_1;
-	void		**death_2;
-	void		**death_3;
 }				t_sprite;
 
 typedef struct s_point
