@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:43:42 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/21 15:01:32 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/28 11:28:07 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include <fcntl.h>
-# include <time.h>
 
 /*MSG_ERROR*/
 # define ARG_ERROR1 "Error\n\nMiss one argument ! Please provide a .ber file."
@@ -28,17 +27,15 @@
 # define OPEN_ERROR "Error\n\nThe file can't be open"
 # define EMPTY_ERROR "Error\n\nThe file is empty"
 # define MALLOC_ERRORS "Error\n\nMalloc allocation failed"
-# define MAP_ERROR_EMPTY "Error\n\nMap Error : Empty or uninitialized map"
-# define MAP_ERROR_RECTANGLE "Error\n\nMap Error : Map is not rectangle"
-# define WALL_ERROR "Error\n\nMap error: Map is not enclosed by walls"
-# define PLAYER_ERROR "Error\n\nMap error: Missing or incorrect number of player"
-# define COLLECTIBLE_ERROR "Error\n\nMap error: Missing or incorrect \
+# define MAP_ERROR_EMPTY "Error\n\nEmpty or uninitialized map"
+# define MAP_ERROR_RECTANGLE "Error\n\nMap is not rectangle"
+# define WALL_ERROR "Error\n\nMap is not enclosed by walls"
+# define PLAYER_ERROR "Error\n\nMissing or incorrect number of player"
+# define COLLECTIBLE_ERROR "Error\n\nMissing or incorrect \
 	number of collectible"
-# define EXIT_ERROR "Error\n\nMap error: \
-	Missing or incorrect number of exit"
-# define COLLECTIBLE_PATH_ERROR "Error\n\nMap error : \
-	Collectible can't be reached"
-# define EXIT_PATH_ERROR "Error\n\nMap error : exit can't be reached"
+# define EXIT_ERROR "Error\n\nMissing or incorrect number of exit"
+# define COLLECTIBLE_PATH_ERROR "Error\n\nCollectible can't be reached"
+# define EXIT_PATH_ERROR "Error\n\nExit can't be reached"
 # define SCREEN_ERROR "Error\n\nMap size is bigger than display resolution"
 # define ENV "Error\n\nNo env variable"
 # define XPM_ERROR "Error\n\nXPM file error"
