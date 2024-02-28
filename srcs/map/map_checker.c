@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:45:09 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/08 15:03:55 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:46:08 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ static void	check_elements(t_game *game)
 				game->collectible_count++;
 			else if (game->map[x][y] == 'E')
 				game->exit_count++;
+			else if (game->map[x][y] != '1' && game->map[x][y] != '0')
+				end_game(ELEMENT_ERROR, game, 1);
 			y++;
 		}
 		x++;

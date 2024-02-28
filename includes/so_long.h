@@ -6,7 +6,7 @@
 /*   By: nclassea <nclassea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:43:42 by nclassea          #+#    #+#             */
-/*   Updated: 2024/02/28 11:28:07 by nclassea         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:46:27 by nclassea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define PLAYER_ERROR "Error\n\nMissing or incorrect number of player"
 # define COLLECTIBLE_ERROR "Error\n\nMissing or incorrect \
 	number of collectible"
+# define ELEMENT_ERROR "Error\n\nMap must contain at least one of each element"
 # define EXIT_ERROR "Error\n\nMissing or incorrect number of exit"
 # define COLLECTIBLE_PATH_ERROR "Error\n\nCollectible can't be reached"
 # define EXIT_PATH_ERROR "Error\n\nExit can't be reached"
